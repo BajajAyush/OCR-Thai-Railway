@@ -81,9 +81,12 @@ def convert_date(input_date):
     if "." in input_date:
         input_date = input_date.replace(".", "")
     # Parse the input date string
-    parsed_date = datetime.strptime(input_date, '%d %b %Y')
-    # Format the date in the desired way
-    formatted_date = parsed_date.strftime('%d/%m/%Y')
+    try:
+        parsed_date = datetime.strptime(input_date, '%d %b %Y')
+        # Format the date in the desired way
+        formatted_date = parsed_date.strftime('%d/%m/%Y')
+    except ValueError:
+        formatted_date = input_date
     return formatted_date
 
 def extract_dates_and_english_text(image_path):
@@ -134,9 +137,14 @@ def extract_dates_and_english_text(image_path):
             t = re.findall(date_exp, line)
             extracted_dates.extend(t)
         if "Name" in line:
-            arr = line.split(" ")
-            i = arr.index("Name")
-            name = arr[i+1]+" "+arr[i+2]
+            try:
+                arr = line.split(" ")
+                i = arr.index("Name")
+                name = arr[i+1]+" "+arr[i+2]
+            except IndexError:
+                arr = line.split(" ")
+                i = arr.index("Name")
+                name = arr[i+1]
         if "Last" in line:
             if "Lastname" in line:
                 arr = line.split(" ")

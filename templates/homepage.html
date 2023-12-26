@@ -53,6 +53,9 @@
         .modal{
             color:black;
         }
+        .pre-style1 {
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -90,7 +93,7 @@
             <button class="btn btn-primary" type="button" onclick="searchById()">Search</button>
         </div>
     </div>
-    <div id="resultList" style="color: white;"></div>
+    <div id="resultList"></div>
 </div>
 
 <!-- Search Result Dialog -->
@@ -229,7 +232,7 @@
         function displayResult(data) {
             var resultList = document.getElementById('resultList');
             var resultDiv = document.createElement('div');
-            resultDiv.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            resultDiv.innerHTML = '<pre class="pre-style1">' + JSON.stringify(data, null, 2) + '</pre>';
             resultList.appendChild(resultDiv);
         }
 

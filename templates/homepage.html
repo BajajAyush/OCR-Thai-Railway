@@ -262,7 +262,15 @@
                 return response.json();
             })
             .then(data => {
+                document.getElementById('identification_number').value = data[0].identification_number;
+                document.getElementById('name').value = data[0].name;
+                document.getElementById('last_name').value = data[0].last_name;
+                document.getElementById('date_of_birth').value = data[0].date_of_birth;
+                document.getElementById('date_of_issue').value = data[0].date_of_issue;
+                document.getElementById('date_of_expiry').value = data[0].date_of_expiry;
                 document.getElementById('identification_number').innerHTML = data[0].identification_number;
+
+                
                 var modal = new bootstrap.Modal(document.getElementById('searchResultModal'));
         var searchResultContent = document.getElementById('searchResultContent');
         

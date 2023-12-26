@@ -9,8 +9,7 @@ WORKDIR /app
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
-WORKDIR /root
-RUN python manage.py createsu
+
 COPY . .
 
 CMD ["gunicorn", "app.wsgi"]
